@@ -1,0 +1,21 @@
+﻿@model List<Dish>
+
+@{
+    ViewData["Title"] = "Menu";
+}
+
+<main>
+    <h1>THE MENU</h1>
+
+    @foreach(var dish in Model)
+    {
+        <div class="card">
+            <div class="card-body">
+                <h3>@dish.Name</h3>
+                <p>@dish.Description</p>
+                <p>$@dish.Price</p>
+            </div>
+            @*<div class="card-img">img</div>*@
+        </div>
+    }
+</main>
