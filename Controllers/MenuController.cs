@@ -20,11 +20,6 @@ namespace RestaurantBookingFrontend.Controllers
             // Call api
             var response = await _httpClient.GetAsync($"{_baseUri}/api/Dish/GetAvailableDishes");
 
-
-            Console.WriteLine(response);
-            Console.WriteLine(response.Content);
-
-
             if (!response.IsSuccessStatusCode)
                 return NotFound();
 
