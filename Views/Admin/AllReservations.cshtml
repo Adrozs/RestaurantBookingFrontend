@@ -1,0 +1,30 @@
+﻿@model List<Reservation>
+
+<main>
+    <h1>ALL RESERVATIONS</h1>
+
+    @foreach(var res in Model)
+    {
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">@res.CustomerName</h5>
+            </div>
+            <ul class="list-group list-group-flush">
+                <li class="list-group-item-info">Current bill:</li>
+                <li class="list-group-item">$@res.TotalBill</li>
+                <li class="list-group-item-info">Guests</li>
+                <li class="list-group-item">@res.Guests</li>
+                <li class="list-group-item-info">Reservation time:</li>
+                <li class="list-group-item">@res.ReservationTime</li>
+                <li class="list-group-item-info">Reserved for:</li>
+                <li class="list-group-item">@res.ReservationDurationMinutes min</li>
+                <li class="list-group-item-info">Table number:</li>
+                <li class="list-group-item">NEED TO IMPLEMENT</li>
+            </ul>
+            <div class="card-body">
+                <a asp-action="EditReservation" class="btn btn-link">Edit</a>
+                <a asp-action="DeleteReservation" class="btn btn-danger">Delete</a>
+            </div>
+        </div>
+    };
+</main>

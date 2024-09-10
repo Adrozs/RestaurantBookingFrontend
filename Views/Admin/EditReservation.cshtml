@@ -1,0 +1,45 @@
+﻿@model ReservationById
+
+<main>
+    <h1 class="mb-4">Edit Reservation</h1>
+    <form asp-controller="Admin" asp-action="EditReservation" method="post">
+        <!-- Hidden fields not editable-->
+        <input type="hidden" name="Id" value="@Model.Id" />
+        <input type="hidden" name="CustomerId" value="@Model.CustomerId" />
+
+        <div class="card">
+            <div class="card-body">
+                <label for="CustomerName">Reservation Name:</label>
+                <input class="form-control" id="CustomerName" name="CustomerName" value="@Model.CustomerName" disabled readonly />
+            </div>
+            <div class="card-body">
+                <label for="CustomerName">Total bill:</label>
+                <input class="form-control" id="TotalBill" name="TotalBill" value="@Model.TotalBill" disabled readonly />
+            </div>
+            <ul class="list-group list-group-flush">
+                <li class="list-group-item">
+                    <label for="Guests">Guests:</label>
+                    <input type="number" class="form-control" id="Guests" name="Guests" value="@Model.Guests" required />
+                </li>
+                <li class="list-group-item">
+                    <label for="ReservationTime">Reservation Time:</label>
+                    <input type="datetime-local" class="form-control" id="ReservationTime" name="ReservationTime" value="@Model.ReservationTime.ToString("yyyy-MM-ddTHH:mm")" required />
+                </li>
+                <li class="list-group-item">
+                    <label for="ReservationDurationMinutes">Reserved for (minutes):</label>
+                    <input type="number" class="form-control" id="ReservationDurationMinutes" name="ReservationDurationMinutes" value="@Model.ReservationDurationMinutes" required />
+                </li>
+                <li class="list-group-item">
+                    <label for="TableId">Table Number:</label>
+                    <input type="number" class="form-control" id="TableId" name="TableId" value="@Model.TableId" required />
+                </li>
+            </ul>
+
+
+            <div class="card-body">
+                <button type="submit" class="btn btn-success">Save Changes</button>
+                <a asp-action="getReservation" asp-route-reservationId="@Model.Id" class="btn btn-secondary">Cancel</a>
+            </div>
+        </div>
+    </form>
+</main>

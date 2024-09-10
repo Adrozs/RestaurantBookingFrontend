@@ -1,0 +1,67 @@
+﻿@model ReservationById
+
+<main>
+   <h1 class="mb-4">Reservation Details</h1>
+    <div class="card">
+        <div class="card-body">
+            <h4 class="card-title">Reservation Name: @Model.CustomerName</h4>
+        </div>
+        <ul class="list-group list-group-flush">
+            <li class="list-group-item d-flex justify-content-between">
+                <span>Current Bill:</span>
+                <strong>$@Model.TotalBill</strong>
+            </li>
+            <li class="list-group-item d-flex justify-content-between">
+                <span>Guests:</span>
+                <strong>@Model.Guests</strong>
+            </li>
+            <li class="list-group-item d-flex justify-content-between">
+                <span>Reservation Time:</span>
+                <strong>@Model.ReservationTime</strong>
+            </li>
+            <li class="list-group-item d-flex justify-content-between">
+                <span>Reserved for:</span>
+                <strong>@Model.ReservationDurationMinutes min</strong>
+            </li>
+            <li class="list-group-item d-flex justify-content-between">
+                <span>Table Number:</span>
+                <strong>NEED TO IMPLEMENT</strong> <!-- Placeholder -->
+            </li>
+        </ul>
+
+        <div class="card-body">
+            <h5 class="card-title">Ordered Dishes</h5>
+
+            <!-- Ordered Dishes Section -->
+            <ul class="list-group">
+                @foreach (var dish in Model.OrderedDishes)
+                {
+                    <li class="list-group-item d-flex justify-content-between">
+                        <span>@dish.DishName</span>
+                        <strong>$@dish.Price</strong>
+                    </li>
+                }
+            </ul>
+        </div>
+
+        <div class="card-body">
+@*             <a asp-controller="Admin" asp-action="EditReservation" asp-route-reservationId="@Model.Id" class="btn btn-primary">Edit</a>
+ *@
+
+@*             <a asp-controller="Admin" asp-action="EditReservation" asp-route-id="@Model.Id" class="btn btn-primary">Edit</a>
+ *@            
+            <form asp-controller="Admin" asp-action="EditReservation" method="get">
+                <input type="hidden" name="reservationId" value="@Model.Id" />
+                <button type="submit" class="btn btn-primary">Edit</button>
+            </form>
+
+            
+            <form asp-controller="Admin" asp-action="DeleteReservation" method="post">
+                <input type="hidden" name="reservationId" value="@Model.Id"/>
+                <button type="submit" class="btn btn-danger">Delete</button>
+            </form>
+        </div>
+    </div>
+
+
+</main>
