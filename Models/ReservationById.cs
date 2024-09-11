@@ -6,7 +6,7 @@
         public DateTime ReservationTime { get; set; }
         public int ReservationDurationMinutes { get; set; }
         public int Guests { get; set; }
-        public string CustomerName { get; set; }
+        public string? CustomerName { get; set; }
         public decimal TotalBill { get; set; }
 
 

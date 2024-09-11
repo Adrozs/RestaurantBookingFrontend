@@ -1,11 +1,13 @@
 ﻿@model ReservationById
 
-<main>
+<div>
     <h1 class="mb-4">Edit Reservation</h1>
     <form asp-controller="Admin" asp-action="EditReservation" method="post">
-        <!-- Hidden fields not editable-->
+        <!-- Hidden fields not editable but will still be sent back with the form-->
         <input type="hidden" name="Id" value="@Model.Id" />
         <input type="hidden" name="CustomerId" value="@Model.CustomerId" />
+        <input type="hidden" name="TotalBill" value="@Model.TotalBill"/>
+        <input type="hidden" name="CustomerName" value="@Model.CustomerName" />
 
         <div class="card">
             <div class="card-body">
@@ -42,4 +44,4 @@
             </div>
         </div>
     </form>
-</main>
+</div>

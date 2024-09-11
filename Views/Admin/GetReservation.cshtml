@@ -44,12 +44,7 @@
             </ul>
         </div>
 
-        <div class="card-body">
-@*             <a asp-controller="Admin" asp-action="EditReservation" asp-route-reservationId="@Model.Id" class="btn btn-primary">Edit</a>
- *@
-
-@*             <a asp-controller="Admin" asp-action="EditReservation" asp-route-id="@Model.Id" class="btn btn-primary">Edit</a>
- *@            
+        <div class="card-body d-flex" style="width">     
             <form asp-controller="Admin" asp-action="EditReservation" method="get">
                 <input type="hidden" name="reservationId" value="@Model.Id" />
                 <button type="submit" class="btn btn-primary">Edit</button>

@@ -27,7 +27,8 @@ namespace RestaurantBookingFrontend.Controllers
             return View();
         }
 
-        [HttpGet]
+
+
         public async Task<IActionResult> GetReservation(int reservationId)
         {
             var response = await _httpClient.GetAsync($"{_baseUri}/api/Reservation/GetReservationById?resId={reservationId}");
@@ -44,7 +45,6 @@ namespace RestaurantBookingFrontend.Controllers
             return View(reservation);
         }
 
-        [HttpGet]
         public async Task<IActionResult> AllReservations()
         {
             var response = await _httpClient.GetAsync($"{_baseUri}/api/Reservation/GetAllReservations");
@@ -61,29 +61,21 @@ namespace RestaurantBookingFrontend.Controllers
             return View(reservations);
         }
 
-        [HttpPost]
+
+        [HttpPost("Admin/EditReservation")]
         public async Task<IActionResult> EditReservation(ReservationById reservationById)
         {
             if(!ModelState.IsValid)
-            {
-                // Log each error
-                foreach (var error in ModelState.Values.SelectMany(v => v.Errors))
-                {
-                    Console.WriteLine(error.ErrorMessage);
-                }
-
-                // Return the view with the model to display errors
                 return View(reservationById);
-            }
-            
 
+
+            // Create a new reservation object as we don't need ordered dishes or customer name to update the reservation
             var reservation = new Reservation
             {
                 Id = reservationById.Id,
                 ReservationTime = reservationById.ReservationTime,
                 ReservationDurationMinutes = reservationById.ReservationDurationMinutes,
                 Guests = reservationById.Guests,
-                //CustomerName = reservationById.CustomerName,
                 TotalBill = reservationById.TotalBill,
                 TableId = reservationById.TableId,
                 CustomerId = reservationById.CustomerId,
@@ -98,6 +90,8 @@ namespace RestaurantBookingFrontend.Controllers
             return RedirectToAction("getReservation", new { reservationId = reservationById.Id });
         }
 
+        // Made its own method as it required another model than the getbyid method for more data
+        [HttpGet]
         public async Task<IActionResult> EditReservation(int reservationId)
         {
             var response = await _httpClient.GetAsync($"{_baseUri}/api/Reservation/GetReservationById?resId={reservationId}");
@@ -110,13 +104,19 @@ namespace RestaurantBookingFrontend.Controllers
             var jsonOptions = new JsonSerializerOptions { PropertyNameCaseInsensitive = true };
 
             var reservation = await JsonSerializer.DeserializeAsync<ReservationById>(jsonString, jsonOptions);
-
+                
             return View(reservation);
         }
 
-        public IActionResult DeleteReservation(int reservationId)
+        [HttpPost]
+        public async Task<IActionResult> DeleteReservation(int reservationId)
         {
-            return View();
+            var response = await _httpClient.DeleteAsync($"{_baseUri}/api/Reservation/DeleteReservation?resId={reservationId}");
+
+            if (!response.IsSuccessStatusCode)
+                return NotFound();
+
+            return RedirectToAction("Index");
         }
 
         public IActionResult Menu()
