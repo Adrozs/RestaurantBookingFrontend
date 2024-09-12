@@ -12,8 +12,9 @@ namespace RestaurantBookingFrontend.Controllers
     {
         private readonly HttpClient _httpClient;
         private readonly string _baseUri = "https://localhost:7251";
+        private readonly JsonSerializerOptions _jsonOptions = new JsonSerializerOptions { PropertyNameCaseInsensitive = true };
 
-        public AdminController(HttpClient httpClient)
+    public AdminController(HttpClient httpClient)
         {
             _httpClient = httpClient;
         }
@@ -39,7 +40,7 @@ namespace RestaurantBookingFrontend.Controllers
 
             var jsonString = await response.Content.ReadAsStreamAsync();
 
-            var jsonOptions = new JsonSerializerOptions { PropertyNameCaseInsensitive = true };
+            var jsonOptions = _jsonOptions;
 
             var reservation = await JsonSerializer.DeserializeAsync<ReservationById>(jsonString, jsonOptions);
 
@@ -54,10 +55,8 @@ namespace RestaurantBookingFrontend.Controllers
                 return NotFound();
 
             var jsonString = await response.Content.ReadAsStreamAsync();
-
-            var jsonOptions = new JsonSerializerOptions { PropertyNameCaseInsensitive = true };
             
-            var reservations = await JsonSerializer.DeserializeAsync<IEnumerable<Reservation>>(jsonString, jsonOptions);
+            var reservations = await JsonSerializer.DeserializeAsync<IEnumerable<Reservation>>(jsonString, _jsonOptions);
             
             return View(reservations);
         }
@@ -102,9 +101,7 @@ namespace RestaurantBookingFrontend.Controllers
 
             var jsonString = await response.Content.ReadAsStreamAsync();
 
-            var jsonOptions = new JsonSerializerOptions { PropertyNameCaseInsensitive = true };
-
-            var reservation = await JsonSerializer.DeserializeAsync<ReservationById>(jsonString, jsonOptions);
+            var reservation = await JsonSerializer.DeserializeAsync<ReservationById>(jsonString, _jsonOptions);
                 
             return View(reservation);
         }
@@ -130,32 +127,28 @@ namespace RestaurantBookingFrontend.Controllers
 
             var jsonString = await response.Content.ReadAsStreamAsync();
 
-            var dishes = await JsonSerializer.DeserializeAsync<IEnumerable<Dish>>(jsonString, new JsonSerializerOptions { PropertyNameCaseInsensitive = true });
+            var dishes = await JsonSerializer.DeserializeAsync<IEnumerable<Dish>>(jsonString, _jsonOptions);
 
             return View(dishes);
         }
 
         [HttpGet]
-        public async Task<IActionResult> EditMenuItem()
+        public async Task<IActionResult> EditMenuItem(int dishId)
         {
-            if (TempData["EditDish"] != null)
-            {
-                var dishJson = TempData["EditDish"]?.ToString();
-                var dish = Newtonsoft.Json.JsonConvert.DeserializeObject<Dish>(dishJson);
+            var response = await _httpClient.GetAsync($"{_baseUri}/api/Dish/GetDishById?dishId={dishId}");
 
+            var jsonString = await response.Content.ReadAsStreamAsync();
 
-                Console.WriteLine("IsAvailable after deserialization: " + dish.IsAvailable);
+            var dish = await JsonSerializer.DeserializeAsync<Dish>(jsonString, _jsonOptions);
 
+            if(!response.IsSuccessStatusCode)
+                return RedirectToAction("EditMenu");
 
-                if (dish != null)
-                    return View(dish);
-            }
-
-            return RedirectToAction("EditMenu");
+            return View(dish);
         }
 
         [HttpPost]
-        public async Task<IActionResult> EditMenuItem(int dishId)
+        public async Task<IActionResult> UpdateMenuItem(int dishId)
         {
             return RedirectToAction("EditMenu");
         }

@@ -27,11 +27,7 @@
 
             <div class="card-body d-flex">
                 <form asp-controller="Admin" asp-action="EditMenuItem" method="get">
-                    @*Serialize dish object into TempData to be used in the controller*@
-                    @{
-                        Console.WriteLine("IsAvailable before serialization: " + dish.IsAvailable); // Debugging
-                        TempData["EditDish"] = Newtonsoft.Json.JsonConvert.SerializeObject(dish);
-                    }
+                    <input type="hidden" name="dishId" value="@dish.Id" />
                     <button type="submit" class="btn btn-primary">Edit</button>
                 </form>
 
