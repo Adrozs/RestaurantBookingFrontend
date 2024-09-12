@@ -1,0 +1,48 @@
+﻿@using System.Text.Json
+@model List<Dish>
+
+@{
+    ViewData["Title"] = "Menu";
+}
+
+<section>
+    <h1>THE MENU</h1>
+
+    @foreach (var dish in Model)
+    {
+        <div class="card">
+            <div class="card-body">
+                <h3>@dish.Name</h3>
+                <p>@dish.Description</p>
+                <p>$@dish.Price</p>
+                @if (dish.IsAvailable)
+                {
+                    <p>Available</p>
+                }
+                else
+                {
+                    <p>Out of stock</p>
+                }
+            </div>
+
+            <div class="card-body d-flex">
+                <form asp-controller="Admin" asp-action="EditMenuItem" method="get">
+                    @*Serialize dish object into TempData to be used in the controller*@
+                    @{
+                        Console.WriteLine("IsAvailable before serialization: " + dish.IsAvailable); // Debugging
+                        TempData["EditDish"] = Newtonsoft.Json.JsonConvert.SerializeObject(dish);
+                    }
+                    <button type="submit" class="btn btn-primary">Edit</button>
+                </form>
+
+                <form asp-controller="Admin" asp-action="DeleteMenuItem" method="post">
+                    <input type="hidden" name="dishId" value="@dish.Id" />
+                    <button type="submit" class="btn btn-danger">Delete</button>
+                </form>
+            </div>
+        </div>
+    }
+    <br />
+    <a asp-controller="Admin" asp-action="AddMenuItem" class="btn btn-success">Create new</a>
+
+</section>

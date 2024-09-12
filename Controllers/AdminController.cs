@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Http.Json;
 using Microsoft.AspNetCore.Mvc;
 using RestaurantBookingFrontend.Models;
+using System.Reflection;
 using System.Text;
 using System.Text.Json;
 using System.Text.Json.Serialization;
@@ -64,7 +65,7 @@ namespace RestaurantBookingFrontend.Controllers
 
         [HttpPost("Admin/EditReservation")]
         public async Task<IActionResult> EditReservation(ReservationById reservationById)
-        {
+            {
             if(!ModelState.IsValid)
                 return View(reservationById);
 
@@ -119,9 +120,55 @@ namespace RestaurantBookingFrontend.Controllers
             return RedirectToAction("Index");
         }
 
-        public IActionResult Menu()
+        [HttpGet("Admin/EditMenu")]
+        public async Task<IActionResult> EditMenu()
         {
-            return View();
+            var response = await _httpClient.GetAsync($"{_baseUri}/api/Dish/GetAllDishes");
+
+            if (!response.IsSuccessStatusCode)
+                return NotFound();
+
+            var jsonString = await response.Content.ReadAsStreamAsync();
+
+            var dishes = await JsonSerializer.DeserializeAsync<IEnumerable<Dish>>(jsonString, new JsonSerializerOptions { PropertyNameCaseInsensitive = true });
+
+            return View(dishes);
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> EditMenuItem()
+        {
+            if (TempData["EditDish"] != null)
+            {
+                var dishJson = TempData["EditDish"]?.ToString();
+                var dish = Newtonsoft.Json.JsonConvert.DeserializeObject<Dish>(dishJson);
+
+
+                Console.WriteLine("IsAvailable after deserialization: " + dish.IsAvailable);
+
+
+                if (dish != null)
+                    return View(dish);
+            }
+
+            return RedirectToAction("EditMenu");
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> EditMenuItem(int dishId)
+        {
+            return RedirectToAction("EditMenu");
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> DeleteMenuItem(int dishId)
+        {
+            var response = await _httpClient.DeleteAsync($"{_baseUri}/api/Dish/DeleteDish?dishId={dishId}");
+
+            if (!response.IsSuccessStatusCode)
+                return NotFound();
+
+            return RedirectToAction("EditMenu");
         }
     }
 }
