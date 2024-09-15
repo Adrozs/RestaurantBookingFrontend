@@ -82,3 +82,21 @@
 .dish-item p {
     font-size: 1.1rem;
 }
+
+/* responsitivity for history section*/
+.history-section .history-text {
+    font-size: 1rem; /* Default size */
+}
+
+@media (min-width: 768px) {
+    .history-section .history-text {
+        font-size: 1.1rem; /* Bigger size on medium and larger screens */
+    }
+}
+
+@media (min-width: 992px) {
+    .history-section .history-text {
+        font-size: 1.2rem; /* Even bigger size on large screens */
+        text-align: center; /* Center text on larger screens */
+    }
+}

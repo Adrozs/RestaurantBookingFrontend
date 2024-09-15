@@ -2,70 +2,97 @@
     ViewData["Title"] = "Home";
 }
 
-@*Image over restaurant along with name and tagline*@
-<section class="home-header-container mb-5">
-    <img src="./Images/restaurant.webp" id="home-header-img" />
-    <div class="home-header-text">
+@* Image over restaurant along with name and tagline *@
+<section class="home-header-container mb-5 position-relative">
+    <img src="./Images/restaurant.webp" id="home-header-img" class="img-fluid w-100" />
+   
+    <div class="home-header-text position-absolute top-50 start-50 translate-middle text-center text-white">
         <h1 class="display-4">Snack Overflow</h1>
-        <p>Where coding meets cuisine!</p>
+        <p class="lead">Where coding meets cuisine!</p>
     </div>
 </section>
 
-<main class="text-center">
-    @*Popular dishes section *@
-    <section class="highlighted-dishes">
-        <h2> Popular dishes</h2>
+<main class="container">
+    @* Popular dishes section *@
+    <section class="highlighted-dishes text-center">
+        <h2 class="mb-4">Popular Dishes</h2>
+        <div class="row">
 
-        <div class="dishes-grid">
-            <div class="dish-item">
-                <img src="./Images/Byte-sized bites.webp" class="menu-item-highlight"/>
-                <h4>Byte-sized bites</h4>
-                <p>Crispy chicken tenders served with a trio of dipping sauces: honey mustard, BBQ, and ranch.</p>
+            @* Dish 1 *@
+            <div class="col-md-6 col-lg-4 mb-4">
+                <div class="dish-item card h-100">
+                    <img src="./Images/Byte-sized bites.webp" class="menu-item-highlight card-img-top" />
+                    <div class="card-body">
+                        <h4>Byte-sized bites</h4>
+                        <p>Crispy chicken tenders served with a trio of dipping sauces: honey mustard, BBQ, and ranch.</p>
+                    </div>
+                </div>
             </div>
 
-            
-            <div class="dish-item">
-                <img src="./Images/SQL-icious salmon.webp" class="menu-item-highlight" />
-                <h4>SQL-icious Salmon</h4>
-                <p>Grilled salmon filet with a honey mustard glaze, served with quinoa and steamed broccoli.</p>
+            @* Dish 2 *@
+            <div class="col-md-6 col-lg-4 mb-4">
+                <div class="dish-item card h-100">
+                    <img src="./Images/SQL-icious salmon.webp" class="menu-item-highlight card-img-top" />
+                    <div class="card-body">
+                        <h4>SQL-icious Salmon</h4>
+                        <p>Grilled salmon filet with a honey mustard glaze, served with quinoa and steamed broccoli.</p>
+                    </div>
+                </div>
             </div>
 
-
-            <div class="dish-item">
-                <img src="./Images/SpaghettiCarbonara.webp" class="menu-item-highlight" />
-                <h4>Spaghetti C#rbonara</h4>
-                <p>Classic Italian carbonara with pancetta, egg, parmesan, and black pepper, tossed with spaghetti.</p>
+            @* Dish 3 *@
+            <div class="col-md-6 col-lg-4 mb-4">
+                <div class="dish-item card h-100">
+                    <img src="./Images/SpaghettiCarbonara.webp" class="menu-item-highlight card-img-top" />
+                    <div class="card-body">
+                        <h4>Spaghetti C#rbonara</h4>
+                        <p>Classic Italian carbonara with pancetta, egg, parmesan, and black pepper, tossed with spaghetti.</p>
+                    </div>
+                </div>
             </div>
 
-            <div class="dish-item">
-                <img src="./Images/BooleanBurger.webp" class="menu-item-highlight" />
-                <h4>Boolean Burger</h4>
-                <p>A plant-based burger with lettuce, tomato, pickles, and vegan aioli, served on a toasted bun with sweet potato fries.</p>
+            @* Dish 4 *@
+            <div class="col-md-6 col-lg-4 mb-4 offset-lg-2">
+                <div class="dish-item card h-100">
+                    <img src="./Images/BooleanBurger.webp" class="menu-item-highlight card-img-top" />
+                    <div class="card-body">
+                        <h4>Boolean Burger</h4>
+                        <p>A plant-based burger with lettuce, tomato, pickles, and vegan aioli, served on a toasted bun with sweet potato fries.</p>
+                    </div>
+                </div>
             </div>
 
-            <div class="dish-item">
-                <img src="./Images/RuntimeRibs.webp" class="menu-item-highlight" />
-                <h4>Runtime Ribs</h4>
-                <p>Slow-cooked BBQ ribs, fall-off-the-bone tender, served with coleslaw and cornbread.</p>
+            @* Dish 5*@
+            <div class="col-md-6 col-lg-4 mb-4">
+                <div class="dish-item card h-100">
+                    <img src="./Images/RuntimeRibs.webp" class="menu-item-highlight card-img-top" />
+                    <div class="card-body">
+                        <h4>Runtime Ribs</h4>
+                        <p>Slow-cooked BBQ ribs, fall-off-the-bone tender, served with coleslaw and cornbread.</p>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
 
-    @*History section*@
-    <section>
-        <h2> History </h2>
 
-        @*OBS! TODO: Fixa bildens formattering*@
-        <img src="./Images/history.webp"/> 
-        <p>
-            Born from a love of code and a passion for culinary creativity, Snack Overflow is the brainchild of two software engineers turned food enthusiasts. After countless late-night coding sessions fueled by instant noodles, energy drinks, and the occasional pizza, they realized that the tech world needed a better dining experience. But this wouldn’t just be any restaurant—it would be the perfect fusion of their two great loves: food and technology.
-            <br /><br />
-            In 2023, Snack Overflow opened its doors to hungry coders, tech lovers, and foodies alike. The name, a playful nod to the infamous "stack overflow" error, reflects our belief that good food, like good code, should be innovative, satisfying, and occasionally a little cheeky. Our mission is to provide a space where people can "debug" their hunger while enjoying inventive, high-quality dishes in a laid-back yet high-tech environment.
-            <br /><br />
-            At Snack Overflow, the menu is just as quirky and exciting as the name suggests. From our "404: Fries Not Found" to the crowd-favorite "Byte-sized Bites," every dish is designed with a dash of creativity and a whole lot of flavor. We’re committed to using fresh, locally sourced ingredients, ensuring that every meal is as thoughtful as a well-written line of code.
-            <br /> <br />
-            The restaurant’s ambiance mirrors the fusion of tech and food, with cozy, modern decor and subtle geeky touches like menu screens, USB charging stations at every table, and even QR codes that let you customize your meal. Whether you’re here to fuel up before your next big coding project or just to enjoy a fun night out, Snack Overflow is your go-to spot for delicious food with a tech twist!
-        </p>
+    @* History section *@
+    <section class="history-section my-5">
+        <h2 class="text-center mb-4">Our History</h2>
+        <div class="row align-items-center">
+            <div class="col-md-6">
+                <img src="./Images/history.webp" class="img-fluid mb-4 mb-md-0" />
+            </div>
+            <div class="col-md-6 text-md-center">
+                <p class="history-text">
+                    Born from a love of code and a passion for culinary creativity, Snack Overflow is the brainchild of two software engineers turned food enthusiasts. After countless late-night coding sessions fueled by instant noodles, energy drinks, and the occasional pizza, they realized that the tech world needed a better dining experience. But this wouldn’t just be any restaurant—it would be the perfect fusion of their two great loves: food and technology.
+                </p>
+                <p class="history-text">
+                    In 2023, Snack Overflow opened its doors to hungry coders, tech lovers, and foodies alike. The name, a playful nod to the infamous "stack overflow" error, reflects our belief that good food, like good code, should be innovative, satisfying, and occasionally a little cheeky.
+                </p>
+                <p class="history-text">
+                    At Snack Overflow, the menu is just as quirky and exciting as the name suggests. From our "404: Fries Not Found" to the crowd-favorite "Byte-sized Bites," every dish is designed with a dash of creativity and a whole lot of flavor.
+                </p>
+            </div>
+        </div>
     </section>
-
-</main>

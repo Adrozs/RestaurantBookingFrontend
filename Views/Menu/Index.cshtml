@@ -4,18 +4,25 @@
     ViewData["Title"] = "Menu";
 }
 
-<main>
-    <h1>THE MENU</h1>
+<main class="container my-5">
+    <h1 class="mb-4 text-center">Our Menu</h1>
 
-    @foreach(var dish in Model)
-    {
-        <div class="card">
-            <div class="card-body">
-                <h3>@dish.Name</h3>
-                <p>@dish.Description</p>
-                <p>$@dish.Price</p>
+    <div class="row">
+        @foreach (var dish in Model)
+        {
+            <div class="col-md-6 col-lg-4 mb-4">
+                <div class="card h-100 shadow-sm">
+                    <div class="card-body">
+                        <h3 class="card-title">@dish.Name</h3>
+                        <p class="card-text">@dish.Description</p>
+                        <p class="card-text"><strong>Price: </strong>$@dish.Price</p>
+
+                        @*<div class="card-img">
+                            <img src="path_to_image" alt="Image of @dish.Name" class="img-fluid">
+                        </div>*@    
+                    </div>
+                </div>
             </div>
-            @*<div class="card-img">img</div>*@
-        </div>
-    }
+        }
+    </div>
 </main>

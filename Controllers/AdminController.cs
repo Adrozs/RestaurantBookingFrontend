@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Http.Json;
 using Microsoft.AspNetCore.Mvc;
 using RestaurantBookingFrontend.Models;
+using System.ComponentModel;
 using System.Reflection;
 using System.Text;
 using System.Text.Json;
@@ -148,8 +149,14 @@ namespace RestaurantBookingFrontend.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> UpdateMenuItem(int dishId)
+        public async Task<IActionResult> UpdateMenuItem(Dish dish)
         {
+            var json = JsonSerializer.Serialize(dish);
+
+            var content = new StringContent(json, Encoding.UTF8, "application/json");
+
+            await _httpClient.PostAsync($"{_baseUri}/api/Dish/UpdateDish", content);
+
             return RedirectToAction("EditMenu");
         }
 
@@ -160,6 +167,26 @@ namespace RestaurantBookingFrontend.Controllers
 
             if (!response.IsSuccessStatusCode)
                 return NotFound();
+
+            return RedirectToAction("EditMenu");
+        }
+
+
+        public async Task<IActionResult> AddMenuItem()
+        {
+            var dish = new Dish();
+
+            return View(dish);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> AddMenuItem(Dish dish)
+        {
+            var json = JsonSerializer.Serialize(dish);
+
+            var content = new StringContent (json, Encoding.UTF8, "application/json");
+
+            await _httpClient.PostAsync($"{_baseUri}/api/Dish/CreateDish", content);
 
             return RedirectToAction("EditMenu");
         }
