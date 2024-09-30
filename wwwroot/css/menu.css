@@ -1,0 +1,40 @@
+﻿body {
+    background-image: url('/Images/menu-bg.webp'); 
+    background-size: cover;
+    background-position: center; 
+    background-repeat: no-repeat;
+    min-height: 100%; 
+}
+
+body::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.6); 
+    z-index: -1; 
+}
+
+/*Since the header/nav is part of the body it removed the color by having the image - workaround*/
+header {
+    background-color: white;
+}
+
+.menu-item {
+    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15); 
+    transition: box-shadow 0.3s ease;
+}
+
+.menu-item:hover {
+    box-shadow: 0 6px 10px rgba(255, 255, 255, 0.25);
+}
+
+
+.card-img {
+    width: 100%;
+    height: auto;
+    aspect-ratio: 4/3;
+    object-fit: cover;
+}

@@ -1,102 +1,75 @@
-﻿/* Header section */
-.home-header-container {
-    position: relative;
-    width: 100vw;
-    height: 70vh;
-    overflow: hidden;
-    margin-left: calc(50% - 50vw); /* Full viewport width alignment */
+﻿/*Popular dishes section*/
+.menu-item {
+    box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15); /* Subtle shadow */
+    transition: box-shadow 0.3s ease; /* Smooth transition for hover effects */
 }
 
-#home-header-img {
+.menu-item:hover {
+    box-shadow: 0 8px 12px rgba(0, 0, 0, 0.18);
+}
+
+/*.menu-item img {
+    max-width: 410px;
+    max-height: 410px;
+    min-width: 320px;
+    min-height: 320px;
+}*/
+
+.card-img-top {
     width: 100%;
-    height: 100%;
-    /*min-height: 550px;*/ /*Makes sure image looks good on mobile*/
+    height: auto;
+    aspect-ratio: 4/3; 
     object-fit: cover;
-    filter: brightness(40%)
 }
 
-.home-header-text {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    color: white;
-    text-align: center;
-    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.9);
-    width: 90%;
-    min-height: 20%;
-}
-
-.home-header-text h1 {
-    color: white;   
-    font-weight: 100;
-    font-size: 4rem;
-}
-
-.home-header-text p {
-    font-size: 1.8rem;
-    font-weight: 200;
-    color: rgb(225, 225, 225);
-}
-
-
-/*Popular dishes section*/
-.highlighted-dishes {
-    text-align: center;
-    padding: 2rem 0;
-}
-
-.highlighted-dishes h2 {
-    font-size: 2rem;
-    font-weight: 400;
-}
-
-.dishes-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(250px), 1fr);
-    gap: 1rem;
-    padding: 1rem;
-    justify-items: center;
-}
-
-.dish-item {
-    width: 100%;
-    height: auto;
-    border-radius: 10px; /*what does this do?*/
-    margin-bottom: 1rem;
-}
-
-.dish-item img {
-    width: 100%;
-    height: auto;
-    border-radius: 10px;
-    margin-bottom: 10px;
-}
-
-.dish-item h4 {
-    font-size: 1.5rem;
-    font-weight: 400;
-    margin: 0.5rem 0 
-}
-
-.dish-item p {
-    font-size: 1.1rem;
-}
 
 /* responsitivity for history section*/
 .history-section .history-text {
     font-size: 1rem; /* Default size */
 }
 
+
+/* Medium screens */
+
 @media (min-width: 768px) {
+    /* Enlargen text  */
     .history-section .history-text {
-        font-size: 1.1rem; /* Bigger size on medium and larger screens */
+        font-size: 1.1rem; 
     }
 }
 
+/* Large screens */
 @media (min-width: 992px) {
     .history-section .history-text {
-        font-size: 1.2rem; /* Even bigger size on large screens */
-        text-align: center; /* Center text on larger screens */
+        /* Center text and enlargen text  */
+        font-size: 1.2rem;
+        text-align: center;
+    }
+}
+
+@media (max-width: 1200px) {
+    .history-custom-responsive{
+        display: flex;
+        flex-direction:column;
+    }
+    .history-custom-responsive div {
+        width: 80vw;
+        margin-bottom: 2rem;
+    }
+}
+
+
+@media (max-width: 1400px) {
+    #home-header-h1 {
+        font-size: 10vw;
+        width: 90%;
+    }
+
+    .home-header-container {
+         height: auto;
+    }
+
+    #home-header-img {
+        height: 1000px;
     }
 }
