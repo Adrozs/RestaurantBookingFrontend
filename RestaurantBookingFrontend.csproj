@@ -8,13 +8,15 @@
 
   <ItemGroup>
     <None Include="wwwroot\Images\Byte-sized bites.webp" />
-    <None Include="wwwroot\Images\RuntimeRibs.webp" />
-    <None Include="wwwroot\Images\SpaghettiCarbonara.webp" />
-    <None Include="wwwroot\Images\SQL-icious salmon.webp" />
+    <None Include="wwwroot\Images\Runtime Ribs.webp" />
+    <None Include="wwwroot\Images\Spaghetti Carbonara.webp" />
+    <None Include="wwwroot\Images\Grilled Query Salmon.webp" />
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="8.0.8" />
     <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
+    <PackageReference Include="popper.js" Version="1.16.1" />
   </ItemGroup>
 
 </Project>
