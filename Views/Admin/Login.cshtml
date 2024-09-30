@@ -1,13 +1,32 @@
-﻿<main>
-    <form>
-        <div class="mb-3">
-            <label for="AdminInputName" class="form-label">Username</label>
-            <input type="text" class="form-control" id="AdminInputName">
+﻿@model LoginModel
+
+@{
+    ViewData["Title"] = "Login";
+}
+
+<section class="row no-gutters mt-4">
+    <div class="col col-lg-6 offset-lg-3 d-flex flex-column align-items-center align-content-center">
+    <h2 class="mb-3">Admin login</h2>
+    <form asp-controller="Admin" asp-action="VerifyLogin" method="post" class="form-width d-flex flex-column justify-content-center">
+        <div class="form-group mb-3">
+@*             <label for="AdminUsername" class="form-label">Username</label>
+ *@                <input type="text" class="form-control form-input-size" id="AdminUsername" name="AdminUsername" placeholder="Enter username..." required>
         </div>
-        <div class="mb-3">
-            <label for="AdminInputPassword" class="form-label">Password</label>
-            <input type="password" class="form-control" id="AdminInputPassword">
+        <div class="form-group mb-4">
+@*             <label for="AdminPassword" class="form-label">Password</label>
+ *@            <input type="password" class="form-control form-input-size" id="AdminPassword" name="AdminPassword" placeholder="Enter password..." required>
         </div>
-        <a asp-controller="Admin" asp-action="Index" type="submit" class="btn btn-primary">Login</a>
+        <button type="submit" class="btn btn-primary">Login</button>
+
+        @if (!ViewData.ModelState.IsValid)
+        {
+            <div class="text-danger">
+                @foreach(var error in ViewData.ModelState.Values.SelectMany(v => v.Errors))
+                {
+                    <p>@error.ErrorMessage</p>
+                }  
+            </div>
+        }
     </form>
-</main>
+    </div>
+</section>

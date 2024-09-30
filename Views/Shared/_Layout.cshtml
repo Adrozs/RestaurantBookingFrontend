@@ -1,25 +1,96 @@
-﻿<!DOCTYPE html>
+﻿@{
+    var isLoggedIn = ViewBag.IsLoggedIn as string;
+}
+
+<!DOCTYPE html>
 <html lang="en">
 <head>
+    <script src="~/lib/jquery/dist/jquery.min.js" defer></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js" defer></script>
+    <script src="~/js/site.js" defer></script>
+    @Html.Partial("_Favicons")
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="@ViewData["Description"]">
     <title>@ViewData["Title"] - Snack Overflow</title>
-    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
-    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
-    <link rel="stylesheet" href="~/RestaurantBookingFrontend.styles.css" asp-append-version="true" />
-    <link rel="stylesheet" href="~/css/home.css" & />
+    <link rel="preload" href="~/css/home.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <link rel="preload" href="~/css/site.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <link rel="preload" href="~/RestaurantBookingFrontend.styles.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+
+    <link rel="preload" href="~/lib/bootstrap/dist/css/bootstrap.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css"></noscript>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet"></noscript>
+    <link rel="preload" href="/Images/restaurant.webp" as="image">
+    <style>
+        .navbar-collapse {
+            min-height: 38px;
+        }
+
+        /* Header section */
+         .home-header-container {
+            position: relative;
+            width: 100vw;
+            height: 100vh;
+            overflow: hidden;
+            margin-left: calc(50% - 50vw); 
+        }
+
+        #home-header-img {
+            width: 100%;
+            height: auto;
+            aspect-ratio: 16/9;
+            max-height: 1100px !important;
+            object-fit: cover;
+            filter: brightness(40%);
+            overflow: hidden;
+        }
+
+        .home-header-text {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: white;
+            text-align: center;
+            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.9);
+            width: 90%;
+            min-height: 20%;
+        }
+
+        #home-header-h1 {
+            font-family: "Pacifico", cursive, sans-serif;
+            color: white;
+            font-size: 7vw;
+            margin: auto;
+            text-align: center;
+            min-height: 100px;
+        }
+
+        .home-header-text p {
+            font-size: 3rem;
+            font-weight: 200;
+            color: rgb(225, 225, 225);
+        }
+    </style>
 </head>
+
+@{
+    ViewData["Title"] = "The coding themed restaurant";
+}
 <body>
     <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white">
+        <nav class="navbar navbar-expand-sm navbar-light bg-tertiary navbar-toggleable-sm">
             <div class="container-fluid">
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">Snack Overflow</a>
+                <a class="navbar-brand text-dark" style="font-family: Pacifico, cursive, sans-serif;font-weight:600;" asp-area="" asp-controller="Home" asp-action="Index">Snack Overflow</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
                         aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
-                    <ul class="navbar-nav flex-grow-1">
+                    <ul class="navbar-nav flex-grow-1 justify-content-end">
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
                         </li>
@@ -29,12 +100,14 @@
                         <li class="nav-item">
                             <a class="nav-link text-dark" href="http://localhost:5173/reservation">Reservation</a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-                        </li>                        
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Admin" asp-action="Login">Admin</a>
-                        </li>
+                        @if (isLoggedIn == "true")
+                        {
+                            Console.WriteLine($"{isLoggedIn}"); 
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-controller="Admin" asp-action="Logout">Logout</a>
+                            </li>
+                        }
+
                     </ul>
                 </div>
             </div>
@@ -46,9 +119,10 @@
         </main>
     </div>
 
-    <footer class="border-top footer text-muted">
-        <div class="container">
-            &copy; 2024 - RestaurantBookingFrontend - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+    <footer class="border-top footer bg-white text-primary">
+        <div class="container d-flex justify-content-between">
+            <span>&copy; 2024 - Snack Overflow </span>
+            <a class="text-primary" asp-area="" asp-controller="Admin" asp-action="Login">Admin</a>
         </div>
     </footer>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>

@@ -1,77 +1,80 @@
 ﻿@{
     ViewData["Title"] = "Home";
+    ViewData["Description"] = "Welcome to Snack Overflow, the perfect blend of coding and culinary creativity! Explore our tech-themed menu and reserve your table online today.";
+
 }
+<link rel="stylesheet" href="~/css/home.css" onload="this.media='all'"/>
+
 
 @* Image over restaurant along with name and tagline *@
 <section class="home-header-container mb-5 position-relative">
-    <img src="./Images/restaurant.webp" id="home-header-img" class="img-fluid w-100" />
+    <img src="./Images/restaurant.webp" id="home-header-img" class="img-fluid w-100" alt="the restaurant" />
    
     <div class="home-header-text position-absolute top-50 start-50 translate-middle text-center text-white">
-        <h1 class="display-4">Snack Overflow</h1>
-        <p class="lead">Where coding meets cuisine!</p>
+        <h1 id="home-header-h1" style="font-family: Pacifico, cursive, sans-serif;font-weight:400;color:white;">Snack Overflow</h1>
     </div>
 </section>
 
-<main class="container">
+<section class="container">
     @* Popular dishes section *@
-    <section class="highlighted-dishes text-center">
-        <h2 class="mb-4">Popular Dishes</h2>
+    <section class="text-center">
+        <h2 class="mb-4">Chef's selection</h2>
         <div class="row">
 
             @* Dish 1 *@
-            <div class="col-md-6 col-lg-4 mb-4">
-                <div class="dish-item card h-100">
-                    <img src="./Images/Byte-sized bites.webp" class="menu-item-highlight card-img-top" />
+            <article class="col-md-6 col-lg-4 mb-4">
+                <div class="card h-100 menu-item border-smooth">
+                    <img src="./Images/Fork() Filet.webp" class="card-img-top border-smooth-top" alt="Fork Filet" loading="lazy" />
                     <div class="card-body">
-                        <h4>Byte-sized bites</h4>
-                        <p>Crispy chicken tenders served with a trio of dipping sauces: honey mustard, BBQ, and ranch.</p>
+                        <h3>Fork() Filet</h3>
+                        <p>Grilled filet mignon served with garlic mashed potatoes and steamed vegetables.</p>
                     </div>
                 </div>
-            </div>
+            </article>
 
             @* Dish 2 *@
-            <div class="col-md-6 col-lg-4 mb-4">
-                <div class="dish-item card h-100">
-                    <img src="./Images/SQL-icious salmon.webp" class="menu-item-highlight card-img-top" />
+            <article class="col-md-6 col-lg-4 mb-4">
+                <div class="card h-100 menu-item border-smooth">
+                    <img src="./Images/Grilled Query Salmon.webp" class="card-img-top border-smooth-top" alt="Grilled Query Salmon" loading="lazy" />
                     <div class="card-body">
-                        <h4>SQL-icious Salmon</h4>
+                        <h3>Grilled Query Salmon</h3>
                         <p>Grilled salmon filet with a honey mustard glaze, served with quinoa and steamed broccoli.</p>
                     </div>
                 </div>
-            </div>
+            </article>
 
             @* Dish 3 *@
-            <div class="col-md-6 col-lg-4 mb-4">
-                <div class="dish-item card h-100">
-                    <img src="./Images/SpaghettiCarbonara.webp" class="menu-item-highlight card-img-top" />
+            <article class="col-md-6 col-lg-4 mb-4">
+                <div class="card h-100 menu-item border-smooth">
+                    <img src="./Images/Full Stack Fajitas.webp" class="card-img-top border-smooth-top" alt="Full Stack Fajitas" loading="lazy" />
                     <div class="card-body">
-                        <h4>Spaghetti C#rbonara</h4>
-                        <p>Classic Italian carbonara with pancetta, egg, parmesan, and black pepper, tossed with spaghetti.</p>
+                        <h3>Full Stack Fajitas</h3>
+                        <p>Grilled beef or chicken with sautéed peppers and onions, served with flour tortillas, guacamole, sour cream, and salsa.</p>
                     </div>
                 </div>
-            </div>
+            </article>
 
             @* Dish 4 *@
-            <div class="col-md-6 col-lg-4 mb-4 offset-lg-2">
-                <div class="dish-item card h-100">
-                    <img src="./Images/BooleanBurger.webp" class="menu-item-highlight card-img-top" />
+            <article class="col-md-6 col-lg-4 mb-4 offset-lg-2">
+                <div class="card h-100 menu-item border-smooth">
+                    <img src="./Images/Toast Skagen Stack.webp" class="card-img-top border-smooth-top" alt="Toast Skagen Stack" loading="lazy" />
                     <div class="card-body">
-                        <h4>Boolean Burger</h4>
-                        <p>A plant-based burger with lettuce, tomato, pickles, and vegan aioli, served on a toasted bun with sweet potato fries.</p>
+                        <h4>Toast Skagen Stack</h4>
+                        <p>A Swedish classic with prawns, mayonnaise, dill, and a hint of lemon, served on toasted bread, topped with fish roe.</p>
                     </div>
                 </div>
-            </div>
+            </article>
 
             @* Dish 5*@
-            <div class="col-md-6 col-lg-4 mb-4">
-                <div class="dish-item card h-100">
-                    <img src="./Images/RuntimeRibs.webp" class="menu-item-highlight card-img-top" />
+            <article class="col-md-6 col-lg-4 mb-4">
+                <div class="card h-100 menu-item border-smooth">
+                    <img src="./Images/Binary Brownie Bytes.webp" class="menu-item-highlight card-img-top border-smooth-top" alt="Binary Brownie Bytes" loading="lazy" />
                     <div class="card-body">
-                        <h4>Runtime Ribs</h4>
-                        <p>Slow-cooked BBQ ribs, fall-off-the-bone tender, served with coleslaw and cornbread.</p>
+                        <h3>Binary Brownie Bytes</h3>
+                        <p>Rich chocolate brownies served in bite-sized portions, with a side of whipped cream and raspberry coulis.</p>
                     </div>
                 </div>
-            </div>
+            </article>
         </div>
     </section>
 
@@ -79,9 +82,9 @@
     @* History section *@
     <section class="history-section my-5">
         <h2 class="text-center mb-4">Our History</h2>
-        <div class="row align-items-center">
+        <article class="row align-items-center history-custom-responsive">
             <div class="col-md-6">
-                <img src="./Images/history.webp" class="img-fluid mb-4 mb-md-0" />
+                <img src="./Images/history.webp" class="img-fluid mb-4 mb-md-0 border-smooth" alt="The two owners standing in the restaurant" loading="lazy" />
             </div>
             <div class="col-md-6 text-md-center">
                 <p class="history-text">
@@ -94,5 +97,6 @@
                     At Snack Overflow, the menu is just as quirky and exciting as the name suggests. From our "404: Fries Not Found" to the crowd-favorite "Byte-sized Bites," every dish is designed with a dash of creativity and a whole lot of flavor.
                 </p>
             </div>
-        </div>
+        </article>
     </section>
+</section>
