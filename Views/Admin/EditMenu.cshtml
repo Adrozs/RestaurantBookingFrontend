@@ -1,19 +1,30 @@
 ﻿@model List<Dish>
 
 @{
-    ViewData["Title"] = "Menu";
+    ViewData["Title"] = "Edit menu";
 }
 
 <section class="container my-5">
     <h1 class="mb-4">THE MENU</h1>
 
+    <form>
+        <label htmlFor="mealTypeSelect">Filter:</label>
+        <select class="form-select mb-3 w-25" id="mealTypeSelect">
+            <option value="null">All</option>
+            <option value="Appetizer">Appetizers</option>
+            <option value="Main">Main dishes</option>
+            <option value="Dessert">Desserts</option>
+        </select>
+    </form>
+
+
     @foreach (var dish in Model)
     {
-        <div class="card mb-4 h-100 shadow-sm">
+        <article class="card mb-3 h-100 shadow-sm dish-item" data-category="@dish.MealType">
             <div class="card-body">
                 <h3 class="card-title">@dish.Name</h3>
                 <p class="card-text">@dish.Description</p>
-                <p class="card-text"> <strong>Price: </strong>$@dish.Price</p>
+                <p class="card-text"> <strong>Price: </strong>$@dish.Price.ToString("0.00")</p>
                 <p class="card-text">
                     <strong>Status: </strong>
                     @if (dish.IsAvailable)
@@ -38,9 +49,36 @@
                     <button type="submit" class="btn btn-danger">Delete</button>
                 </form>
             </div>
-        </div>
+        </article>
     }
-    <br />
-    <a asp-controller="Admin" asp-action="AddMenuItem" class="btn btn-success">Create new</a>
+
+    <div class="d-flex flex-column w-100; center-sm-screen">
+        <a asp-controller="Admin" asp-action="AddMenuItem" class="btn btn-success mb-1 button-width">Create new</a>
+
+        <a asp-controller="Admin" asp-action="Index" type="button" class="btn btn-primary button-width">
+            <img width="18" height="18" src="../Images/back-icon.png" />
+            Back
+        </a>
+    </div>
 
 </section>
+
+<script>
+    document.getElementById("mealTypeSelect").addEventListener("change", function () {
+        var selectedCategory = this.value;
+
+        // Retriee all dishes
+        var dishes = document.querySelectorAll(".dish-item");
+
+        // Filter dishes
+        dishes.forEach(function (dish) {
+            var category = dish.getAttribute("data-category");
+
+            // Display dish if no filter is selected or if the category matches the filter
+            if (selectedCategory == "null" || category == selectedCategory) 
+                dish.style.display = "block";
+            else 
+                dish.style.display = "none";
+        })
+    })
+</script>

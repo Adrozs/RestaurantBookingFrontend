@@ -1,9 +1,13 @@
 ﻿@model Dish
 
-<div>
+@{
+    ViewData["Title"] = "Create dish";
+}
+
+<section>
     <h1 class="mb-4">Add new dish</h1>
     <form asp-controller="Admin" asp-action="AddMenuItem" method="post">
-        <div class="card">
+        <article class="card">
             <div class="card-body">
                 <label for="Name">Dish name:</label>
                 <input asp-for="Name" class="form-control" id="Name" name="Name" placeholder="Dish name" required />
@@ -16,8 +20,15 @@
                 <li class="list-group-item">
                     <label for="Price">Price:</label>
                     <input asp-for="Price" type="text" step="any" class="form-control" id="Price" name="Price" value="@Model.Price" placeholder="0" required />
-
-                </li>   
+                </li>
+                <li class="list-group-item">
+                    <label for="MealType">Meal type:</label>
+                    <select asp-for="MealType" class="form-control" id="MealType" name="MealType" value="@Model.MealType" required>
+                        <option value="Appetizer">Appetizer</option>
+                        <option value="Main">Main course</option>
+                        <option value="Dessert">Dessert</option>
+                    </select>
+                </li>
                 <li class="list-group-item">
                     <label>Availability:</label>
                     <div class="form-check">
@@ -36,6 +47,6 @@
                 <button type="submit" class="btn btn-success">Save Changes</button>
                 <a asp-action="EditMenu" class="btn btn-secondary">Cancel</a>
             </div>
-        </div>
+        </article>
     </form>
-</div>
+</section>
